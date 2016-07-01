@@ -58,7 +58,8 @@ greenButton();
 var d = dist(mouseX, mouseY, 80, height/2);
 
 
-osc = new p5.Oscillator('Triangle');
+osc = new p5.Oscillator();
+osc.setType('sine')
 
 //var freq = midiToFreq(notes[i]);
 //osc.start();
@@ -73,6 +74,9 @@ var i = 0;
 
 
 function draw() {
+var d = dist(mouseX, mouseY, 80, height/2);
+
+
 background(200);
 //purpleButton();
 
@@ -83,8 +87,19 @@ fill(130, 22, 166, 150);
 ellipse(80, height/2, 80, 80);
 pop();
 
+if (d > 40){
+  text(d,20,20);
+  osc.stop();
+  freq = midiToFreq(notes[0]);
+  //osc.start();
+  osc.freq(freq);
+}
 
 
+
+
+
+// end draw
 }
 
 function mousePressed() {
@@ -103,7 +118,7 @@ function mousePressed() {
     text(d,20,20);
     osc.stop();
     freq = midiToFreq(notes[0]);
-    osc.start();
+    //osc.start();
     osc.freq(freq);
   }
 
