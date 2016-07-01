@@ -12,7 +12,7 @@ h1 {
 }
 
 canvas {
-margin-left: 20px;
+//margin-left: 20px;
 display: flex;
 
 /* this centers our sketch horizontally. */
