@@ -5,11 +5,11 @@ var circlesArray = [];
 
 function setup() {
   var gameCanvas = createCanvas(windowWidth * 0.75, windowHeight/2);
-  background(200);
+
 
 //setup
 
-/*
+
 function purpleButton() {
   push();
   strokeWeight(5);
@@ -18,7 +18,7 @@ function purpleButton() {
   ellipse(80, height/2, 80, 80);
   pop();
 }
-
+/*
 function redButton() {
   push();
   strokeWeight(5);
@@ -46,27 +46,25 @@ function greenButton() {
   pop();
 }
 
-purpleButton();
+
 redButton();
 blueButton();
 greenButton();
 */
 //(placementX, placementY, placementColor, pitchChoice)
 
-circlesArray.push(new Circle(80, height/2, color(130, 22, 166, 150), 60) );
-println(circleArray.length);
 
-for (var j = 0; j > circlesArray.length; j++) {
-  circlesArray[j].display;
-}
+
+var d = dist(mouseX, mouseY, 80, height/2);
+
 
 osc = new p5.Oscillator('Triangle');
 
-var freq = midiToFreq(notes[0]);
+//var freq = midiToFreq(notes[i]);
 //osc.start();
-osc.freq(freq);
+//osc.freq(freq);
 
-
+var i = 0;
 
 //end of setup
 }
@@ -75,5 +73,38 @@ osc.freq(freq);
 
 
 function draw() {
+background(200);
+//purpleButton();
+
+push();
+strokeWeight(5);
+stroke(130, 22, 166);
+fill(130, 22, 166, 150);
+ellipse(80, height/2, 80, 80);
+pop();
+
+
+
+}
+
+function mousePressed() {
+  var d = dist(mouseX, mouseY, 80, height/2);
+
+  if (d < 40) {
+    stroke(0);
+    textSize(20);
+    text(d, 20, 20);
+    osc.stop();
+    var freq = midiToFreq(notes[2]);
+    osc.start();
+    osc.freq(freq);
+
+  } else if (d > 40){
+    text(d,20,20);
+    osc.stop();
+    freq = midiToFreq(notes[0]);
+    osc.start();
+    osc.freq(freq);
+  }
 
 }
